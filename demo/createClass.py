@@ -1,0 +1,16 @@
+import PhpGenerator.PhpClass as PG
+
+myClass = PG.PhpClassFile("myClass")
+myClass.setNamespace("Test\\Namespace")
+myClass.addUse("\\DateTime")
+myClass.addUse("\\Test\\ParentClass")
+myClass.addUse("\\Test\\ClassInterface")
+myClass.setExtends("ParentClass")
+myClass.addImplements("ClassInterface")
+myClass.addConst(PG.PhpClassConst("FIELD_ID","'id'"))
+myClass.addConst(PG.PhpClassConst("NAME","'name'"))
+myClass.addAttribute(PG.PhpClassAttribute("id","int"))
+myClass.addAttribute(PG.PhpClassAttribute("name","string").setAssign("'pippo'"))
+myClass.addMethod(PG.PhpClassMethod("setId").addParameter(PG.PhpClassMethodParameter("id").setType("int")))
+myClass.addMethod(PG.PhpClassMethod("getId").setReturnType("int", True).setCode(["return $this->id;"]))
+print(*myClass.getCodeLines())

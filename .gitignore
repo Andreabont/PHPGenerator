@@ -1,0 +1,8 @@
+/build/*
+/dist/*
+/PhpGenerator.egg-info/*
+/.eggs/*
+/.kdev4/*
+__pycache__/
+*.py[cod]
+*.kdev4
