@@ -17,12 +17,30 @@ class PhpWriteHelper:
                 code.append((' ' * (self.php_indent_number * deep)) + line)
 
     def addDocLines(self, code:list, lines, deep:int = 0):
+        if not lines: return
         self.addCodeLines(code, "/**", deep)
         if type(lines) is not list:
             lines = [lines]
         for line in lines:
             self.addCodeLines(code, " * %s" % line, deep)
         self.addCodeLines(code, " */", deep)
+
+class PhpFileUse():
+    
+    use_path = ''
+    use_alias = None
+    
+    def __init__(self, path:str, alias:str = None):
+        self.use_path = path
+        self.use_alias = alias
+
+    def getCodeLines(self, helper) -> list:
+        code = []
+        if self.use_alias:
+            helper.addCodeLines(code, "use %s as %s;" % (self.use_path, self.use_alias))
+        else:
+            helper.addCodeLines(code, "use %s;" % (self.use_path))
+        return code
 
 class PhpFile(object):
     
@@ -39,7 +57,7 @@ class PhpFile(object):
         self.php_namespace = namespace
         return self
         
-    def addUse(self, use:str):
+    def addUse(self, use:PhpFileUse):
         self.php_uses.append(use)
         return self
 
@@ -52,7 +70,7 @@ class PhpFile(object):
             self.php_helper.addCodeLines(code)
         if self.php_uses:
             for use in self.php_uses:
-                self.php_helper.addCodeLines(code, "use %s;" % use)
+                self.php_helper.addCodeLines(code, use.getCodeLines(self.php_helper))
             self.php_helper.addCodeLines(code)
         return code
 

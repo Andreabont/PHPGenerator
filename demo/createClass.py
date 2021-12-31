@@ -2,9 +2,9 @@ import PhpGenerator.PhpClass as PG
 
 myClass = PG.PhpClassFile("myClass")
 myClass.setNamespace("Test\\Namespace")
-myClass.addUse("\\DateTime")
-myClass.addUse("\\Test\\ParentClass")
-myClass.addUse("\\Test\\ClassInterface")
+myClass.addUse(PG.PhpFileUse("\\DateTime"))
+myClass.addUse(PG.PhpFileUse("\\Test\\ParentClass"))
+myClass.addUse(PG.PhpFileUse("\\Test\\ClassInterface"))
 myClass.setExtends("ParentClass")
 myClass.addImplements("ClassInterface")
 myClass.addConst(PG.PhpClassConst("FIELD_ID","'id'"))
