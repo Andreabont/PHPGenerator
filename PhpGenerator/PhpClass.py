@@ -5,11 +5,13 @@ class PhpClassAttribute:
     var_name = ''
     var_type = None
     var_assing = None
-    
-    def __init__(self, var_name, var_type = None):
+    var_nullable = False
+
+    def __init__(self, var_name, var_type = None, var_nullable = False):
         self.var_name = var_name
         self.var_type = var_type
         self.var_assing = None
+        self.var_nullable = var_nullable
         
     def setAssign(self, var_assing:str):
         self.var_assing = var_assing
