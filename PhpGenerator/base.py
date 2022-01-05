@@ -85,7 +85,6 @@ class PhpFile(object):
         self.php_helper.addCodeLines(code)
         if self.php_declare is not None:
             delcare_array = [x.getCodeLines(self.php_helper) for x in self.php_declare]
-            print(delcare_array)
             self.php_helper.addCodeLines(code, "declare(%s);" % (", ".join(delcare_array)))
             self.php_helper.addCodeLines(code)    
         if self.php_namespace is not None:
