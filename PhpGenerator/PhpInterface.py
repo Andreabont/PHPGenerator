@@ -1,4 +1,4 @@
-from PhpGenerator.base import PhpFile, PhpFileUse
+from PhpGenerator.base import PhpFile, PhpFileUse, PhpFileDeclare
 
 class PhpInterfaceConst:
     
