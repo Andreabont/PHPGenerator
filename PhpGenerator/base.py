@@ -83,7 +83,7 @@ class PhpFile(object):
         code = []
         self.php_helper.addCodeLines(code, "<?php")
         self.php_helper.addCodeLines(code)
-        if self.php_declare is not None:
+        if self.php_declare:
             delcare_array = [x.getCodeLines(self.php_helper) for x in self.php_declare]
             self.php_helper.addCodeLines(code, "declare(%s);" % (", ".join(delcare_array)))
             self.php_helper.addCodeLines(code)    
