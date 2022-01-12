@@ -20,7 +20,7 @@ class PhpClassAttribute:
     def getCodeLines(self, helper) -> list:
         code = []
         if self.var_type:
-            helper.addDocLines(code, "@var %s" % self.var_type + "|null" if self.var_nullable else "")
+            helper.addDocLines(code, "@var %s" % self.var_type + ("|null" if self.var_nullable else ""))
         if self.var_assing:
             helper.addCodeLines(code, "protected $%s = %s;" % (self.var_name, self.var_assing))
         else:
